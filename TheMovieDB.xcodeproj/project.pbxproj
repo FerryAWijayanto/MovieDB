@@ -24,6 +24,8 @@
 		2F247AE82462E544006285DA /* MovieItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F247AE72462E544006285DA /* MovieItem.swift */; };
 		2F247AEA2462EB75006285DA /* PopularDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F247AE92462EB75006285DA /* PopularDataSource.swift */; };
 		2FC236BA2463171F004F9E32 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC236B92463171F004F9E32 /* Extension+UIViewController.swift */; };
+		2FDB1A262464356D006F0890 /* Extension+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB1A252464356D006F0890 /* Extension+UserDefaults.swift */; };
+		2FDB1A2824643990006F0890 /* FavoriteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FDB1A2724643990006F0890 /* FavoriteDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		2F247AE72462E544006285DA /* MovieItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieItem.swift; sourceTree = "<group>"; };
 		2F247AE92462EB75006285DA /* PopularDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularDataSource.swift; sourceTree = "<group>"; };
 		2FC236B92463171F004F9E32 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
+		2FDB1A252464356D006F0890 /* Extension+UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UserDefaults.swift"; sourceTree = "<group>"; };
+		2FDB1A2724643990006F0890 /* FavoriteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,8 @@
 				2F247AD42462CC67006285DA /* UIHelper.swift */,
 				2F247AE92462EB75006285DA /* PopularDataSource.swift */,
 				2FC236B92463171F004F9E32 /* Extension+UIViewController.swift */,
+				2FDB1A252464356D006F0890 /* Extension+UserDefaults.swift */,
+				2FDB1A2724643990006F0890 /* FavoriteDataSource.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -280,6 +286,8 @@
 				2F247AEA2462EB75006285DA /* PopularDataSource.swift in Sources */,
 				2F247AE82462E544006285DA /* MovieItem.swift in Sources */,
 				2F247AD32462C4A6006285DA /* PopularCell.swift in Sources */,
+				2FDB1A262464356D006F0890 /* Extension+UserDefaults.swift in Sources */,
+				2FDB1A2824643990006F0890 /* FavoriteDataSource.swift in Sources */,
 				2F247AD52462CC67006285DA /* UIHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

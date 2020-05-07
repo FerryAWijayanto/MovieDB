@@ -24,6 +24,7 @@ class FavoriteCell: UITableViewCell {
         let label = UILabel()
         label.text = "John Wick"
         label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.numberOfLines = 0
         return label
     }()
 
@@ -90,10 +91,10 @@ class FavoriteCell: UITableViewCell {
             
             movieTitleLbl.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             movieTitleLbl.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 10),
-            movieTitleLbl.trailingAnchor.constraint(equalTo: releaseLbl.leadingAnchor, constant: 10),
-            movieTitleLbl.heightAnchor.constraint(equalToConstant: 20),
+            movieTitleLbl.trailingAnchor.constraint(equalTo: releaseLbl.leadingAnchor, constant: -10),
+            movieTitleLbl.heightAnchor.constraint(equalToConstant: 50),
             
-            releaseLbl.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            releaseLbl.topAnchor.constraint(equalTo: topAnchor, constant: 17),
             releaseLbl.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             releaseLbl.widthAnchor.constraint(equalToConstant: 50),
             releaseLbl.heightAnchor.constraint(equalToConstant: 20),

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreData
 
 struct MovieDBAPI {
     static var topRated: URL {
@@ -52,6 +51,7 @@ struct MovieDBAPI {
             let jsonData = try decoder.decode(MovieItem.self, from: data)
             var items = [Movie]()
             
+            print(jsonData)
             for movie in jsonData.results {
                 if let movie = createMovie(fromJSON: movie) {
                     items.append(movie)
@@ -65,11 +65,12 @@ struct MovieDBAPI {
     }
     
     private static func createMovie(fromJSON movie: Movie) -> Movie? {
-        let id = movie.id
-        let title = movie.title
-        let releaseDate = movie.releaseDate
-        let overview = movie.overview
-        let posterPath = movie.posterPath
+        let id = movie.id ?? 0
+        let title = movie.title ?? ""
+        let releaseDate = movie.releaseDate ?? ""
+        let overview = movie.overview ?? ""
+        let posterPath = movie.posterPath ?? ""
+        
         
         return Movie(id: id, title: title, releaseDate: releaseDate, overview: overview, posterPath: posterPath)
     }

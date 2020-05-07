@@ -94,6 +94,13 @@ extension PopularViewController: UICollectionViewDelegate {
         })
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! PopularCell
+        cell.toggleSelected()
+        let item = dataSource.items[indexPath.row]
+        UserDefaults.standard.save(customObject: item, inKey: "favoriteMovieKey")
+    }
+    
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         store.paginateMovie(in: scrollView) {
             guard self.hasMoreMovies else { return }
@@ -107,6 +114,7 @@ extension PopularViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if !searchText.isEmpty {
             dataSource.items = dataSource.items.filter({ ($0.title.lowercased().contains(searchText.lowercased()))})
+//            dataSource.items = dataSource.items.filter({ (($0.title?.lowercased().contains(searchText.lowercased()))!)})
         } else {
             dataSource.items = dataSource.items
         }

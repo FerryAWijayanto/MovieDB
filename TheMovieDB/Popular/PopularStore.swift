@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import CoreData
 
 enum MovieError: String, Error {
     case invalidURL = "Can't get movie url"
@@ -26,16 +25,6 @@ class PopularStore {
     let session: URLSession = {
         let config = URLSessionConfiguration.default
         return URLSession(configuration: config)
-    }()
-    
-    let persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "Movie")
-        container.loadPersistentStores { (description, error) in
-            if let error = error {
-                print("Error to setup core data \(error)")
-            }
-        }
-        return container
     }()
     
     private let imageURLString = "https://image.tmdb.org/t/p/w500"

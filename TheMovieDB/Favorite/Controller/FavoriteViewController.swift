@@ -14,7 +14,8 @@ class FavoriteViewController: UIViewController {
     let searchController = UISearchController(searchResultsController: nil)
     private let favoriteKey = "favoriteMovieKey"
     
-    var movies = [Movie]()
+    let store = PopularStore()
+    let dataSource = FavoriteDataSource()
 
     override func viewDidLoad() {
         super.viewDidLoad()        
@@ -22,14 +23,13 @@ class FavoriteViewController: UIViewController {
         setupNavigation()
         setupTableView()
         
-        guard let data = UserDefaults.standard.data(forKey: "favoriteMovieKey") else { return }
-        do {
-            if let movie = try NSKeyedUnarchiver(forReadingFrom: data) as? Movie {
-                movies.append(movie)
-                tableView.reloadData()
-            }
-        } catch {
-            print("Failed to unarchive data")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let movie = UserDefaults.standard.retrieve(object: Movie.self, fromKey: "favoriteMovieKey") {
+            dataSource.items.append(movie)
+            tableView.reloadData()
         }
     }
     
@@ -47,7 +47,7 @@ class FavoriteViewController: UIViewController {
         tableView = UITableView(frame: .zero, style: .plain)
         tableView.register(FavoriteCell.self, forCellReuseIdentifier: FavoriteCell.cellID)
         tableView.delegate = self
-        tableView.dataSource = self
+        tableView.dataSource = dataSource
         tableView.rowHeight = 130
         tableView.tableFooterView = UIView()
         view.addSubview(tableView)
@@ -62,15 +62,26 @@ class FavoriteViewController: UIViewController {
     }
 }
 
-extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
-    }
+extension FavoriteViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteCell.cellID, for: indexPath) as! FavoriteCell
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let movie = dataSource.items[indexPath.row]
         
-        return cell
+        store.fetchImage(for: movie) { [weak self] result in
+            guard let self = self else { return }
+            
+            guard
+                let movieIndex = self.dataSource.items.firstIndex(of: movie),
+                case let .success(image) = result else {
+                    return
+            }
+            let movieIndexPath = IndexPath(item: movieIndex, section: 0)
+            
+            if let cell = self.tableView.cellForRow(at: movieIndexPath) as? FavoriteCell {
+                cell.update(with: image)
+                cell.updateResult(with: movie)
+            }
+        }
     }
 }
 

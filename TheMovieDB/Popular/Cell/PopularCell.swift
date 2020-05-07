@@ -63,30 +63,19 @@ class PopularCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        likeBtn.addTarget(self, action: #selector(handleFavorite), for: .touchUpInside)
         configure()
     }
     
-    @objc private func handleFavorite() {
+    func toggleSelected() {
         if btnSelected == false {
             btnSelected = true
             likeBtn.setImage(#imageLiteral(resourceName: "love-and-romance-2"), for: .normal)
             likeBtn.tintColor = #colorLiteral(red: 0.9764705882, green: 0.8078431373, blue: 0.4274509804, alpha: 1)
             
-            guard let movie = movie else { return }
-            
-            do {
-                let encodeData: Data = try NSKeyedArchiver.archivedData(withRootObject: movie, requiringSecureCoding: true)
-                userDefault.set(encodeData, forKey: key)
-                userDefault.synchronize()
-            } catch {
-                print("Failed to archive data:", error)
-            }
         } else {
             btnSelected = false
             likeBtn.setImage(#imageLiteral(resourceName: "love-and-romance").withRenderingMode(.alwaysOriginal), for: .normal)
         }
-        
     }
     
     func update(with image: UIImage?) {
