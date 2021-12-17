@@ -28,6 +28,9 @@ class HomeVC: UIViewController {
 extension HomeVC {
     
     private func initialize() {
+        title = "Movie DB"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         showLoadingView()
         viewModel.fetchPopularMovies()
         viewModel.stopLoading = {
